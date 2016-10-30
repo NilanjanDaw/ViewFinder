@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nilanjan.viewfinder.MainActivity">
+
+    <com.example.nilanjan.viewfinder.ui.CameraSourcePreview
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <com.example.nilanjan.viewfinder.ui.GraphicOverlay
+                android:id="@+id/graphicOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+    </com.example.nilanjan.viewfinder.ui.CameraSourcePreview>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/searchText"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        android:alpha="0.3"
+        android:hint="@string/enter_a_text_to_search"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textAutoCorrect" />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:background="@android:drawable/ic_menu_search"
+        android:backgroundTint="@android:color/white"
+        android:id="@+id/searchButton"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="144dp" />
+
+
+</RelativeLayout>

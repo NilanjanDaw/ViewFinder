@@ -11,19 +11,19 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.nilanjan.viewfinder.ui.CameraSource;
@@ -38,32 +38,25 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
-
-    // Intent request code to handle updating play services if needed.
-    private static final int RC_HANDLE_GMS = 9001;
-
-    // Permission request codes need to be < 256
-    private static final int RC_HANDLE_CAMERA_PERM = 2;
-
     // Constants used to pass extra data in the intent
     public static final String AutoFocus = "AutoFocus";
     public static final String UseFlash = "UseFlash";
     public static final String TextBlockObject = "String";
-
+    private static final String TAG = "MainActivity";
+    // Intent request code to handle updating play services if needed.
+    private static final int RC_HANDLE_GMS = 9001;
+    // Permission request codes need to be < 256
+    private static final int RC_HANDLE_CAMERA_PERM = 2;
+    public EditText searchText;
+    public ImageButton searchButton;
     private CameraSource mCameraSource;
     private CameraSourcePreview mPreview;
     private GraphicOverlay<OcrGraphic> mGraphicOverlay;
-
     // Helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
-
     // A TextToSpeech engine for speaking a String value.
     private TextToSpeech tts;
-    public EditText searchText;
-    public Button searchButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.LENGTH_LONG)
                 .show();
         searchText = (EditText) findViewById(R.id.searchText);
-        searchButton = (Button) findViewById(R.id.searchButton);
+        searchButton = (ImageButton) findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
      * Suppressing InlinedApi since there is a check that the minimum version is met before using
      * the constant.
      */
+    @SuppressWarnings("deprecation")
     @SuppressLint("InlinedApi")
     private void createCameraSource(boolean autoFocus, boolean useFlash) {
         Context context = getApplicationContext();

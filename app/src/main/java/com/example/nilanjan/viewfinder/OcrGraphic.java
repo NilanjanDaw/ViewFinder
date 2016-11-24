@@ -18,13 +18,12 @@ import java.util.List;
 public class OcrGraphic extends GraphicOverlay.Graphic {
 
     private static final String TAG = "OrcGraphic";
-    private int mId;
-    public static String searchString = "";
     private static final int TEXT_COLOR = Color.WHITE;
-
+    public static String searchString = "";
     private static Paint sRectPaint;
     private static Paint sTextPaint;
     private final TextBlock mText;
+    private int mId;
 
     OcrGraphic(GraphicOverlay overlay, TextBlock text) {
         super(overlay);
@@ -87,7 +86,8 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         for(Text currentText : textComponents) {
             List<? extends Text> textElements =  currentText.getComponents();
             for (Text element: textElements) {
-                if (!searchString.equalsIgnoreCase("") && element.getValue().equalsIgnoreCase(searchString)) {
+                if (!searchString.equalsIgnoreCase("") &&
+                        element.getValue().toLowerCase().contains(searchString.toLowerCase())) {
                     RectF rect = new RectF(element.getBoundingBox());
                     rect.left = translateX(rect.left);
                     rect.top = translateY(rect.top);

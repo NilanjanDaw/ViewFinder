@@ -90,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String searchString = searchText.getText().toString();
-                OcrGraphic.searchString = searchString;
+                OcrGraphic.searchString = searchText.getText().toString();
             }
         });
         // TODO: Set up the Text To Speech engine.

@@ -1,5 +1,6 @@
 package com.example.nilanjan.viewfinder;
 
+import android.content.Context;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -10,12 +11,14 @@ import com.google.android.gms.vision.text.TextBlock;
 /**
  * Created by nilan on 30-Oct-16.
  */
-public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
+class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
 
     private GraphicOverlay<OcrGraphic> mGraphicOverlay;
+    private Context context;
 
-    OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay) {
+    OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, Context context) {
         mGraphicOverlay = ocrGraphicOverlay;
+        this.context = context;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
             if (item != null && item.getValue() != null) {
                 Log.d("Processor", "Text detected! " + item.getValue());
             }
-            OcrGraphic graphic = new OcrGraphic(mGraphicOverlay, item);
+            OcrGraphic graphic = new OcrGraphic(mGraphicOverlay, item, context);
             mGraphicOverlay.add(graphic);
         }
     }
